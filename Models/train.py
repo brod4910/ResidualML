@@ -8,32 +8,36 @@ import torch.backends.cudnn as cudnn
 import time
 import sys
 import shutil
-import LenslessDataset
+import MNISTDataset
 
 def train(args, model, device, checkpoint):
 
-    if args.hflip is True:
+    if args.hflip is True and args.resize is not None:
         data_transform = transforms.Compose([
             transforms.Resize((args.resize, args.resize)),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor()
             ])
-    else:
+        print("\nImages resized to %d x %d" % (args.resize, args.resize))
+    elif resize is not None:
         data_transform = transforms.Compose([
             transforms.Resize((args.resize, args.resize)),
             transforms.ToTensor()
             ])
-
-    print("\nImages resized to %d x %d" % (args.resize, args.resize))
+        print("\nImages resized to %d x %d" % (args.resize, args.resize))
+    else:
+        data_transform = transforms.Compose([
+            transforms.ToTensor()
+            ])
 
     # create both training and testing datasets
-    train_dataset = LenslessDataset.LenslessDataset(
+    train_dataset = MNISTDataset.MNISTDataset(
         csv_file= args.train_csv,
         root_dir= args.root_dir,
         transform= data_transform
         )
 
-    test_dataset = LenslessDataset.LenslessDataset(
+    test_dataset = MNISTDataset.MNISTDataset(
         csv_file= args.test_csv,
         root_dir= args.root_dir,
         transform= data_transform

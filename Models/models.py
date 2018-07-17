@@ -7,7 +7,7 @@
 # Alpha Dropout : ['AD', probability]
 # Classifying layer: ['FC', in_features, num_classes]
 # Possible Activation Fns: 'ReLU', 'PReLU', 'SELU', 'LeakyReLU', 'None'->(Contains no Batch Norm for dimensionality reduction 1x1 kernels)
-# srun python main.py --batch-size 16 --epochs 50 --lr 0.001 --momentum .9 --log-interval 100 --resize 240 --root-dir ../ --train-csv ../data_csv/0_9_train.csv --test-csv ../data_csv/0_9_test.csv
+# srun python main.py --batch-size 64 --epochs 40 --lr 0.001 --momentum .9 --log-interval 100 --arcitecture shallow --root-dir ../ --train-csv ../data_csv/0_3_train.csv --test-csv ../data_csv/0_3_test.csv
 
 feature_layers = {
 
@@ -21,6 +21,6 @@ feature_layers = {
 }
 
 classifier_layers = {
-    'shallow_norm': [['L', 256 * 120 * 120, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 10]],
-    'residual': [['L', 1152 * 120 * 120, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 10]]
+    'shallow_norm': [['L', 256 * 16 * 16, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 10]],
+    'residual': [['L', 1152 * 16 * 16, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 10]]
 }
