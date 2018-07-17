@@ -22,7 +22,7 @@ def CreateArgsParser():
                     help='SGD momentum (default: 0.5)')
     parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before logging training status')
-    parser.add_argument('--resize', required= True, type=int, default=None, 
+    parser.add_argument('--resize', type=int, default=None, 
                     help='dimensions of both height and width to be resized')
     parser.add_argument('--num-processes', type=int, default=2, metavar='N',
                     help='how many training processes to use (default: 2)')

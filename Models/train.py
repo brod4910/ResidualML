@@ -19,7 +19,7 @@ def train(args, model, device, checkpoint):
             transforms.ToTensor()
             ])
         print("\nImages resized to %d x %d" % (args.resize, args.resize))
-    elif resize is not None:
+    elif args.resize is not None:
         data_transform = transforms.Compose([
             transforms.Resize((args.resize, args.resize)),
             transforms.ToTensor()
