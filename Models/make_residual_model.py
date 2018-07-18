@@ -5,7 +5,7 @@ from torch.utils.checkpoint import checkpoint_sequential
 class Residual_Model(nn.Module):
 
 	def __init__(self, feature_layers, classifier):
-	        super(Model, self).__init__()
+	        super(Residual_Model, self).__init__()
 	        self.feature_layers = feature_layers
 	        self.classifier = classifier
 
@@ -14,7 +14,7 @@ class Residual_Model(nn.Module):
 		for layer in self.feature_layers:
 			output = layer(input)
 			outputs.append(output)
-			input = torch.cat(ouputs, 1)
+			input = output if len(outputs) is 1 else torch.cat(outputs, 1)
 		input = input.view(input.size(0), -1)
 		input = self.classifier(input)
 		return input

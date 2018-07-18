@@ -21,6 +21,6 @@ feature_layers = {
 }
 
 classifier_layers = {
-    'shallow_norm': [['L', 256 * 14 * 14, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 10]],
-    'residual': [['L', 1152 * 14 * 14, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 10]]
+    'shallow_norm': [['L', 256 * 14 * 14, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 4]],
+    'residual': [['L', 1152 * 14 * 14, 1024, 'ReLU'], ['D', .5], ['FC', 1024, 4]]
 }
