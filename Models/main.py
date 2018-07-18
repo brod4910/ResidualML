@@ -65,7 +65,7 @@ def main():
         network = make_model.Model(make_model.make_layers(models.feature_layers['shallow_norm'], checkpoint= True), 
             make_model.make_classifier_layers(models.classifier_layers['shallow_norm']), checkpoint= True)
     elif args.architecture == 'residual':
-        network = make_residual_model.Residual_Model(make_residual_model.make_layers(models.feature_layers['residual']), 
+        network = make_residual_model.Residual_Model(make_model.make_layers(models.feature_layers['residual']), 
             make_model.make_classifier_layers(models.classifier_layers['residual']))
 
     if args.resume is not None:

@@ -11,13 +11,14 @@ class Residual_Model(nn.Module):
 
 	def forward(self, input):
 		outputs = []
-		for layer in enumerate(self.feature_layers):
+		for layer in self.feature_layers:
 			output = layer(input)
 			if layer isinstance(nn.Conv2d):
 				outputs.append(output)
 				input = torch.cat(outputs, 1)
 			else:
 				input = output
+				
 		input = input.view(input.size(0), -1)
 		input = self.classifier(input)
 		return input
