@@ -10,15 +10,15 @@ class Residual_Model(nn.Module):
 	        self.classifier = classifier
 
 	def forward(self, input):
-		outputs = []
+		outputs = ()
 		for layer in self.feature_layers:
 			output = layer(input)
-			if layer isinstance(nn.Conv2d):
-				outputs.append(output)
+			if isinstance(layer, nn.Conv2d):
+				outputs = outputs + output
 				input = torch.cat(outputs, 1)
 			else:
 				input = output
-				
+
 		input = input.view(input.size(0), -1)
 		input = self.classifier(input)
 		return input
