@@ -65,8 +65,11 @@ def main():
         network = make_model.Model(make_model.make_layers(models.feature_layers['shallow_norm_2.0'], checkpoint= True), 
             make_model.make_classifier_layers(models.classifier_layers['shallow_norm']), checkpoint= True)
     elif args.architecture == 'residual':
-        network = make_residual_model.Residual_Model(make_model.make_layers(models.feature_layers['residual_2.0']), 
+        network = make_model.Residual_Model(make_model.make_layers(models.feature_layers['residual_2.0']), 
             make_model.make_classifier_layers(models.classifier_layers['residual']))
+    elif args.architecture == 'hyper':
+        network = make_model.Hyper_Connected_Model(make_model.make_layers(models.feature_layers['hyper_1.0']), 
+            make_model.make_classifier_layers(models.classifier_layers['hyper_1.0']))
 
     if args.resume is not None:
         if os.path.isfile(args.resume):
