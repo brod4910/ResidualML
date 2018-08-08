@@ -6,7 +6,6 @@ import torch.nn as nn
 import torch.backends.cudnn as cudnn
 import make_model
 import models
-import make_residual_model
 from train import train
 
 def CreateArgsParser():
@@ -69,7 +68,7 @@ def main():
             make_model.make_classifier_layers(models.classifier_layers['residual']))
     elif args.architecture == 'hyper':
         network = make_model.Hyper_Connected_Model(make_model.make_layers(models.feature_layers['hyper_1.0']), 
-            make_model.make_classifier_layers(models.classifier_layers['hyper_1.0']))
+            make_model.make_classifier_layers(models.classifier_layers['hyper']))
 
     if args.resume is not None:
         if os.path.isfile(args.resume):

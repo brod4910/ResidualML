@@ -69,8 +69,8 @@ class Hyper_Connected_Model(nn.Module):
                 outputs.append(output)
             input = output
 
-        input = torch.stack(outputs)
-        input = input.view(input.size(0), -1)
+        outputs = torch.stack(outputs)
+        input = outputs.view(outputs.size(0), -1)
         input = self.classifier(input)
         return input
 
